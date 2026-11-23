@@ -3,8 +3,8 @@ import "./styles.css";
   
     function Books() {
   const [books, setBooks] = useState([
-    {id:1, title: "Harald",author: "James"},
-    {id:2, title: "Harry", author: "Jimmothy"}
+    {id:1, title: "TitleTest",author: "AuthorTest"},
+    {id:2, title: "TitleTest2", author: "AuthorTest2"}
   ]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -28,6 +28,11 @@ function bookAdd(e) {
 function bookManage(idToRemove){
   setBooks(books.filter((book) => book.id !== idToRemove));
 }
+function bookId(book){
+  const slot = books.indexOf(book) +1; 
+  return books.length > 2 ? slot - 2: slot;
+}
+const visibleBooks = books.length > 2 ? books.slice(2) : books;
 
   return (
     <>
@@ -50,7 +55,7 @@ function bookManage(idToRemove){
         <button type="submit"> Add New Book</button>
         </form>
       <ul>
-        {books.map((book) => <li key={book.id}> #{book.id}- "{book.title}" by {book.author}
+        {visibleBooks.map((book) => <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}
         <button type="button" onClick={() => bookManage(book.id)}>Delete Book</button></li>
       )}
       </ul>
