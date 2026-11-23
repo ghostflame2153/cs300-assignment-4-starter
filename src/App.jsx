@@ -19,6 +19,8 @@ function bookAdd(e) {
       id: bookIdCreater,
       title: title.trim(),
       author: author.trim(),
+      rating: null,
+      showRating: false,
     };
 
     setBooks([...books, newBook])
@@ -29,10 +31,58 @@ function bookManage(idToRemove){
   if (idToRemove <= 2) return;
   setBooks(books.filter((book) => book.id !== idToRemove));
 }
+function  toggleRating(idToToggle){
+  setBooks(
+    books.map((book) =>
+    book.id === idToToggle ? { ...book, showRating: !book.showRating } : book
+    )
+  )
+}
+function bookRate(rate, newRate){
+  setBooks(
+    books.map((book) =>
+      book.id === rate ? {...book, rating: newRate} : book
+  )
+);
+}
+function displayRate(dRate){
+  return dRate === null ? 'There is no rating' : `Rating: ${dRate}/5`
+}
+
 function bookId(book){
   const slot = books.indexOf(book) +1; 
   return books.length > 2 ? slot - 2: slot;
 }
+function bookButtons(book) {
+  if (book.id <= 2) return null;
+  
+  return (
+
+      <>
+        <button type="button" onClick={() => bookManage(book.id)}>
+          Delete Book
+        </button>{' '}
+        <button type="button" onClick={() => toggleRating(book.id)}>
+          {book.showRating ? 'Hide Rating' : 'Show Rating'}
+        </button>
+        {book.showRating && (
+          <span style={{ marginLeft: '8px' }}>
+            {displayRate(book.rating)}{' '}
+            {[1, 2, 3, 4, 5].map((num) => (
+              <button
+                key={num}
+                type="button"
+                onClick={() => bookRate(book.id, num)}
+              >
+                {num}
+              </button>
+            ))}
+          </span>
+        )}
+      </>
+    );
+  }
+
 const visibleBooks = books.length > 2 ? books.slice(2) : books;
 
   return (
@@ -55,14 +105,16 @@ const visibleBooks = books.length > 2 ? books.slice(2) : books;
         />
         <button type="submit"> Add New Book</button>
         </form>
+      
       <ul>
-        {visibleBooks.map((book) => <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}
-        <button type="button" onClick={() => bookManage(book.id)}>Delete Book</button></li>
-      )}
+        {visibleBooks.map((book) => ( <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}{''}
+          {bookButtons(book)}
+          </li>
+        ))}
       </ul>
-      </>
-    );
-    }
+    </>
+  );
+}
 
   
       export default function App(){
