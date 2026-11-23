@@ -1,10 +1,31 @@
+import { useState } from 'react';
 import "./styles.css";
+  
+    function Books() {
+  const [books, setBooks] = useState([
+    {id:1, title: "Harald",author: "James"},
+    {id:2, title: "Harry", author: "Jimmothy"}
+  ]);
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+    
 
-export default function App() {
   return (
-    <main>
-      <h1>Your application starts here</h1>
-      {/* Build your own components, state, routes where required, and interactions. */}
-    </main>
-  );
-}
+    <>
+      <h1>My Books: </h1>
+      <ul>
+        {books.map((book,index) => <li key={book.id}> #{index+1}- "{book.title}" by {book.author}</li>)}
+      </ul>
+    </>
+    );
+  }
+
+  
+      export default function App(){
+        return (
+          <main>
+            <Books />
+          </main>
+        );
+      
+    }
