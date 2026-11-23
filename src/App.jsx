@@ -26,6 +26,7 @@ function bookAdd(e) {
     setAuthor('');
 }
 function bookManage(idToRemove){
+  if (idToRemove <= 2) return;
   setBooks(books.filter((book) => book.id !== idToRemove));
 }
 function bookId(book){
