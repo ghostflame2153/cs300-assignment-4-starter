@@ -1,4 +1,6 @@
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
+import Books from './App.jsx';
+/*
 
 function Books() {
   const book = [books, setBooks] = useState([
@@ -17,3 +19,5 @@ function Books() {
       </ul>
     </>
     )}
+*/
+    createRoot(document.getElementById('root')).render(<Books />)
