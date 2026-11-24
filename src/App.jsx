@@ -79,6 +79,10 @@ function bookButtons(book) {
         <button type="button" onClick={() => toggleRating(book.id)}>
           {book.showRating ? 'Hide Rating' : 'Show Rating'}
         </button>
+      <button type="button" onClick={() => toggleInfo(book.id)}>
+          {book.showInfo ? 'Hide Info' : 'More Info'}
+        </button>
+
         {book.showRating && (
           <span style={{ marginLeft: '8px' }}>
             {displayRate(book.rating)}{' '}
