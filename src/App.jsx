@@ -77,7 +77,7 @@ function bookButtons(book) {
           Delete Book
         </button>{' '}
         <button type="button" onClick={() => toggleRating(book.id)}>
-          {book.showRating ? 'Hide Rating' : 'Show Rating'}
+          {book.showRating ? 'Hide Rating' : 'Rate'}
         </button>
       <button type="button" onClick={() => toggleInfo(book.id)}>
           {book.showInfo ? 'Hide Info' : 'More Info'}
@@ -101,6 +101,7 @@ function bookButtons(book) {
         <div style={{ marginTop: '4px' }}>
           <p>Genre: {book.genre || 'None'}</p>
           <p>Info: {book.info || 'None'}</p>
+          <p>Rating: {book.rate || 'None'}</p>
         </div>
 )}
       </>
