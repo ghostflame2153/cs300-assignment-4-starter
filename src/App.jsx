@@ -35,6 +35,9 @@ function bookAdd(e) {
 }
 function bookManage(idToRemove){
   if (idToRemove <= 2) return;
+
+   const isConfirmed = window.confirm("Are you sure?");
+  if (!isConfirmed) return;
   setBooks(books.filter((book) => book.id !== idToRemove));
 }
 
