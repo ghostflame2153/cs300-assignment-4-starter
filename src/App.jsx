@@ -101,7 +101,7 @@ function bookButtons(book) {
         <div style={{ marginTop: '4px' }}>
           <p>Genre: {book.genre || 'None'}</p>
           <p>Info: {book.info || 'None'}</p>
-          <p>Rating: {book.rating || 'None'}</p>
+          <p>Rating: {book.rating ? `${book.rating}/5` : 'None'}</p>
         </div>
 )}
       </>
