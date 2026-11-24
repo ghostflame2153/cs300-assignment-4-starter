@@ -41,7 +41,7 @@ function bookManage(idToRemove){
 function toggleInfo(idToToggle){
   setBooks(
     books.map((book) =>
-      book.id === idtoToggle ? { ...book, showInfo: !book.showInfo} : book
+      book.id === idToToggle ? { ...book, showInfo: !book.showInfo} : book
   )
 );
 }
@@ -97,6 +97,12 @@ function bookButtons(book) {
             ))}
           </span>
         )}
+        {book.showInfo && (
+        <div style={{ marginTop: '4px' }}>
+          <p>Genre: {book.genre || 'None'}</p>
+          <p>Info: {book.info || 'None'}</p>
+        </div>
+)}
       </>
     );
   }
