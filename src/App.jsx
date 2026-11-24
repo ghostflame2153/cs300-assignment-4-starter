@@ -130,6 +130,13 @@ const visibleBooks = books.length > 2 ? books.slice(2) : books;
         />
          <input
           type="text"
+          placeholder="Genre(optional)"
+          value={info}
+          onChange={(e) => setGenre(e.target.value)}
+        />
+        
+         <input
+          type="text"
           placeholder="Additional Info (optional)"
           value={info}
           onChange={(e) => setInfo(e.target.value)}
