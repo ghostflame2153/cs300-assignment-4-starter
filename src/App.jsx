@@ -55,7 +55,7 @@ function  toggleRating(idToToggle){
 function bookRate(rate, newRate){
   setBooks(
     books.map((book) =>
-      book.id === rate ? {...book, rating: newRate} : book
+      book.id === rate ? {...book, rating: newRate, showRating: false} : book
   )
 );
 }
