@@ -121,10 +121,17 @@ const visibleBooks = books.length > 2 ? books.slice(2) : books;
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
         />
+         <input
+          type="text"
+          placeholder="Additional Info (optional)"
+          value={info}
+          onChange={(e) => setInfo(e.target.value)}
+        />
         <button type="submit"> Add New Book</button>
         </form>
       
       <ul>
+
         {visibleBooks.map((book) => ( <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}{''}
           {bookButtons(book)}
           </li>
