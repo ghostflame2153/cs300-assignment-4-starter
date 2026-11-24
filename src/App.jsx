@@ -6,6 +6,7 @@ import "./styles.css";
     {id:1, title: "TitleTest",author: "AuthorTest", genre:"SciFi", info:"Other"},
     {id:2, title: "TitleTest2", author: "AuthorTest2", genre:"Fantasy", info:"Other"}
   ]);
+  const [search, setSearch] = useState('');
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [genre, setGenre] = useState('');
@@ -112,6 +113,18 @@ function bookButtons(book) {
   }
 
 const visibleBooks = books.length > 2 ? books.slice(2) : books;
+
+const searchBooks = visibleBooks.filter ((book) => {
+  const query = search.toLowerCase();
+  return (
+    book.title.toLowerCase().includes(query) ||
+    book.author.toLowerCase().includes(query) ||
+    book.genre.toLowerCase().includes(query) ||
+    book.rating !=null && String(book.rating).includes(query)
+  );
+});
+
+
 
   return (
     <>
