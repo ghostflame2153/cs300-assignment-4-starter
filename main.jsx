@@ -20,4 +20,4 @@ function Books() {
     </>
     )}
 */
-    createRoot(document.getElementById('root')).render(<Books />)
+    createRoot(document.getElementById('root')).render(<App/>)
