@@ -3,11 +3,13 @@ import "./styles.css";
   
   function Books() {
   const [books, setBooks] = useState([
-    {id:1, title: "TitleTest",author: "AuthorTest"},
-    {id:2, title: "TitleTest2", author: "AuthorTest2"}
+    {id:1, title: "TitleTest",author: "AuthorTest", genre:"SciFi", info:"Other"},
+    {id:2, title: "TitleTest2", author: "AuthorTest2", genre:"Fantasy", info:"Other"}
   ]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [genre, setGenre] = useState('');
+  const [info, setInfo] = useState('');
 
 function bookAdd(e) {
     e.preventDefault();
@@ -21,15 +23,27 @@ function bookAdd(e) {
       author: author.trim(),
       rating: null,
       showRating: false,
+      info: info.trim(),
+      genre: genre.trim(),
     };
 
     setBooks([...books, newBook])
     setTitle('');
     setAuthor('');
+    setInfo('');
+    setGenre('');
 }
 function bookManage(idToRemove){
   if (idToRemove <= 2) return;
   setBooks(books.filter((book) => book.id !== idToRemove));
+}
+
+function toggleInfo(idToToggle){
+  setBooks(
+    books.map((book) =>
+      book.id === idtoToggle ? { ...book, showInfo: !book.showInfo} : book
+  )
+);
 }
 function  toggleRating(idToToggle){
   setBooks(
