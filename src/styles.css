@@ -5,8 +5,8 @@ html{
 }
 body {
     min-height: 100vh; 
-    background-color: #FCF5E5;
-    /*https://htmlcolorcodes.com/colors/parchment/ used color parchment*/
+    background-color: #c5ab6f;
+    /*https://htmlcolorcodes.com/colors/parchment/ used parchment color as base then changed*/
     display: flex;
     justify-content: center;
     color:black; 
