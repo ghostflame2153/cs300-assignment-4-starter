@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "./styles.css";
-import initialBooks from './cs300-assignment-4-starter/data/books.json';
+import initialBooks from '../data/books.json';
   function Books() {
 
   const [books, setBooks] = useState(initialBooks);
