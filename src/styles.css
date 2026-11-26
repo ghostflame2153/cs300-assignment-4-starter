@@ -1,5 +1,8 @@
 /* Write your own responsive styles and focus treatment here. */
-
+html{
+     margin: 0;
+    padding: 0;
+}
 body {
     min-height: 100vh; 
     background-color: #FCF5E5;
