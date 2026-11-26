@@ -128,6 +128,15 @@ const searchBooks = visibleBooks.filter ((book) => {
 
   return (
     <>
+    <div className="searchBox">
+      <input 
+      type="text"
+      placeholder="Search by title, genre, or rating!"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      />
+      </div>
+
       <h1>My Books: </h1>
 
       <form onSubmit={bookAdd}>
