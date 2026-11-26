@@ -2,6 +2,8 @@
 html{
      margin: 0;
     padding: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
     h2 {
         font-weight: bold;
         font-size: large;
@@ -43,7 +45,8 @@ body {
     grid-template-columns: repeat(2, minmax(0,1fr));
     }
     body, #root{
-          display: flex;
+    min-height: 100vh;
+    display: flex;
     justify-content: center;
     }
 }
