@@ -9,7 +9,6 @@ html{
         font-size: large;
     }
    #root {
-    max-width: 50vw;
     white-space: normal;
     overflow-wrap: break-word;
     word-break: break-word;
@@ -19,6 +18,9 @@ html{
     html{
         border-left: 20vw solid rgba(204, 75, 36, 0.945);
         border-right: 20vw solid rgba(204, 75, 36, 0.945);
+    }
+    #root{
+        max-width: 50vw;
     }
 }
 body {
@@ -37,7 +39,7 @@ body {
 }
 @media (min-width:375px) and (max-width:767px){
     nav.main ul{
-        box-sizing: border-box;
+    box-sizing: border-box;
     padding:0;
     margin:0;
     list-style:none;
@@ -49,5 +51,6 @@ body {
     min-height: 100vh;
     display: flex;
     justify-content: center;
+    max-width: 95vw;
     }
 }
