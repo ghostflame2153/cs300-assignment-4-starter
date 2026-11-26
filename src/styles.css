@@ -42,11 +42,10 @@ body {
     /*Transition is for a light dark mode option. Currently this is not used, but in future could potentially be used */
 }
 @media (min-width:375px) and (max-width:767px){
-    body, #root{
-    min-height: 100vh;
-    max-width: 95vw;
-    }
     body {
         margin-bottom: 5vh solid green;
     }
+    body, #root{
+    min-height: 100vh;
+    max-width: 95vw;
 }
