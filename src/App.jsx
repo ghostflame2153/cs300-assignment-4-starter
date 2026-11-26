@@ -12,10 +12,30 @@ import "./styles.css";
   const [genre, setGenre] = useState('');
   const [info, setInfo] = useState('');
   const [submittedSearch, setSubmittedSearch] = useState('');
+  const [searchType, setSearchType] = useState('all');
   function handleSearchSubmit(e) {
   e.preventDefault();
-  setSubmittedSearch(search);
+  if (!search.trim()){
+  setSubmittedSearch('');
+  return;
 }
+const choice = window.prompt(
+  "Choose the type you would like to search: Title, Author, Genre, or Rating!"
+);
+
+if (choice === null) return;
+
+const formattedWindow = choice.toLowerCase().trim();
+const validType = ['title', 'author', 'genre', 'rating'];
+
+if (!validType.includes(formattedWindow)) {
+  alert("Sorry, please try again (invalid)");
+  return;
+}
+
+setSearchType(formattedWindow);
+setSubmittedSearch(search);
+  }
 
 function handleClearSearch() {
   setSearch('');
@@ -126,12 +146,21 @@ const visibleBooks = books.length > 2 ? books.slice(2) : books;
 const searchBooks = visibleBooks.filter ((book) => {
   const query = submittedSearch.toLowerCase().trim();
   if (!query) return true; 
-  return (
-    book.title.toLowerCase().includes(query) ||
-    book.author.toLowerCase().includes(query) ||
-    book.genre.toLowerCase().includes(query) ||
-    (book.rating !=null && String(book.rating).includes(query))
-  );
+  if (searchType ==='title') {
+    return book.title.toLowerCase().includes(query);
+  }
+  if (searchType === 'author') {
+    return book.author.toLowerCase().includes(query);
+  }
+  if (searchType === 'genre'){
+    return book.genre.toLowerCase().includes(query);
+  }
+  if (searchType === 'rating'){
+    return book.rating !=null && String(book.rating).includes(query)
+  }
+
+  return true;
+  
 });
 
 
