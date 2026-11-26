@@ -16,6 +16,7 @@ import initialBooks from '../data/books.json';
   const [info, setInfo] = useState('');
   const [submittedSearch, setSubmittedSearch] = useState('');
   const [searchType, setSearchType] = useState('all');
+  const [error, setError] = useState('');
   function handleSearchSubmit(e) {
   e.preventDefault();
   if (!search.trim()){
@@ -46,7 +47,15 @@ function handleClearSearch() {
 }
 function bookAdd(e) {
     e.preventDefault();
-    if(!title.trim() || !author.trim()) return;
+    if(!title.trim()){ 
+     setError("Title missing");
+      return;
+    }
+    if (!author.trim()){
+      setError("Author missing");
+      return;
+    };
+    setError('');
 
     const bookIdCreater = books.length > 0 ? Math.max(...books.map(b => b.id)) + 1 : 1;
     
@@ -194,14 +203,17 @@ const searchBooks = visibleBooks.filter ((book) => {
         type="text"
         placeholder="Title"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) =>{ setTitle(e.target.value);
+        if (formError) setFormError('');}}
         />
 
         <input 
         type="text"
         placeholder="Author"
         value={author}
-        onChange={(e) => setAuthor(e.target.value)}
+        onChange={(e) => {setAuthor(e.target.value);
+        if (formError) setFormError('');
+        }}
         />
          <input
           type="text"
