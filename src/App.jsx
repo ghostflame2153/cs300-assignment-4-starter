@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import "./styles.css";
-  
+import initialBooks from './data/books.json';
   function Books() {
-  const [books, setBooks] = useState([
-    {id:1, title: "TitleTest",author: "AuthorTest", genre:"SciFi", info:"Other"},
-    {id:2, title: "TitleTest2", author: "AuthorTest2", genre:"Fantasy", info:"Other"}
-  ]);
+
+  const [books, setBooks] = useState(initialBooks);
+  //[
+  //  {id:1, title: "TitleTest",author: "AuthorTest", genre:"SciFi", info:"Other"},
+  //  {id:2, title: "TitleTest2", author: "AuthorTest2", genre:"Fantasy", info:"Other"}
+
+  //]);
   const [search, setSearch] = useState('');
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
