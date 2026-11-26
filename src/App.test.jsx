@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { expect, test } from "vitest";
 import App from "./App.jsx";
 
@@ -16,4 +16,34 @@ test("renders a main landmark", () => {
 });
 */}
 
-test()
+test("renders book 1's id (not the test books)", () => {
+  render(<App />);
+  const bookOne = screen.getByText(/#1-/);
+  expect(bookOne).toBeInTheDocument();
+  console.log(bookOne.textContent);
+  expect(bookOne).toHaveTextContent(/by/i);
+});
+
+test("Simulates adding a Book", () => {
+  render(<App />);
+  const title = screen.getByPlaceholderText("Title");
+  const author = screen.getByPlaceholderText("Author");
+  const genre = screen.getByPlaceholderText("Genre(optional)");
+  const info = screen.getByPlaceholderText("Additional Info (optional)");
+
+  fireEvent.change(title, {target: {value: "Bookithy"}});
+  fireEvent.change(author, {target: {value: "Authority"}});
+  fireEvent.change(genre, {target: {value: "NonFiction"}});
+  fireEvent.change(info, {target: {value: "Infortanius"}});
+
+  const button = screen.getByText("Add New Book");
+  fireEvent.click(button);
+
+  expect(screen.getByText(/"Bookithy" by Authority/)).toBeInTheDocument();
+  expect(title.value).toBe("");
+  expect(author.value).toBe("");
+  expect(genre.value).toBe("");
+  expect(info.value).toBe("")
+  console.log("This test sought to test adding a book!")
+
+})
