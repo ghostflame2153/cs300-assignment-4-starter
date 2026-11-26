@@ -3,6 +3,12 @@ html{
      margin: 0;
     padding: 0;
 }
+@media (min-width:768px){
+    html{
+        border-left: 20vw solid brown;
+    border-right: 20vw solid brown;
+    }
+}
 body {
     min-height: 100vh; 
     background-color: #c5ab6f;
@@ -10,8 +16,6 @@ body {
     display: flex;
     justify-content: center;
     color:black; 
-    border-left: 20vw solid brown;
-    border-right: 20vw solid brown;
 
   
 
