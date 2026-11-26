@@ -6,13 +6,12 @@ html{
 @media (min-width:768px){
     html{
         border-left: 20vw solid brown;
-    border-right: 20vw solid brown;
+        border-right: 20vw solid brown;
     }
 }
 body {
     min-height: 100vh; 
-    background-color: #c5ab6f;
-    /*https://htmlcolorcodes.com/colors/parchment/ used parchment color as base then changed*/
+    background-color: #bbad8e;
     display: flex;
     justify-content: center;
     color:black; 
