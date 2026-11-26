@@ -4,6 +4,8 @@ html{
     padding: 0;
     min-width: 0;
     overflow-wrap: anywhere;
+    display: flex;
+  align-items: center;
     h2 {
         font-weight: bold;
         font-size: large;
@@ -26,6 +28,7 @@ html{
 body {
     min-height: 100vh; 
     background-color: #bbad8e;
+    /*Left display and justify for now as a safecase incase something changes*/
     display: flex;
     justify-content: center;
     color:black; 
