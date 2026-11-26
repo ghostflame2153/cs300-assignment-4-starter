@@ -11,7 +11,16 @@ import "./styles.css";
   const [author, setAuthor] = useState('');
   const [genre, setGenre] = useState('');
   const [info, setInfo] = useState('');
+  const [submittedSearch, setSubmittedSearch] = useState('');
+  function handleSearchSubmit(e) {
+  e.preventDefault();
+  setSubmittedSearch(search);
+}
 
+function handleClearSearch() {
+  setSearch('');
+  setSubmittedSearch('');
+}
 function bookAdd(e) {
     e.preventDefault();
     if(!title.trim() || !author.trim()) return;
@@ -115,12 +124,13 @@ function bookButtons(book) {
 const visibleBooks = books.length > 2 ? books.slice(2) : books;
 
 const searchBooks = visibleBooks.filter ((book) => {
-  const query = search.toLowerCase();
+  const query = submittedSearch.toLowerCase().trim();
+  if (!query) return true; 
   return (
     book.title.toLowerCase().includes(query) ||
     book.author.toLowerCase().includes(query) ||
     book.genre.toLowerCase().includes(query) ||
-    book.rating !=null && String(book.rating).includes(query)
+    (book.rating !=null && String(book.rating).includes(query))
   );
 });
 
@@ -129,12 +139,20 @@ const searchBooks = visibleBooks.filter ((book) => {
   return (
     <>
     <div className="searchBox">
+      <form onSubmit={handleSearchSubmit}>
       <input 
       type="text"
       placeholder="Search by title, genre, or rating!"
       value={search}
       onChange={(e) => setSearch(e.target.value)}
       />
+      <button type="submit">Submit</button>
+      {submittedSearch && (
+        <button type="button" onClick={handleClearSearch}>
+          Clear
+          </button>
+      )}
+      </form>
       </div>
 
       <h1>My Books: </h1>
@@ -171,7 +189,7 @@ const searchBooks = visibleBooks.filter ((book) => {
       
       <ul>
 
-        {visibleBooks.map((book) => ( <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}{''}
+        {searchBooks.map((book) => ( <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}{''}
           {bookButtons(book)}
           </li>
         ))}
