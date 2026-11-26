@@ -12,7 +12,7 @@
      "info":"Other"
     },
   {
-    "id": "books-01",
+    "id": "3",
     "title": "Robot Garden",
     "author": "Mina Reed",
     "category": "Science fiction",
@@ -20,7 +20,7 @@
     "description": "Fictional practice book for the science fiction collection."
   },
   {
-    "id": "books-02",
+    "id": "4",
     "title": "River Sketches",
     "author": "Leo Park",
     "category": "Art",
@@ -28,7 +28,7 @@
     "description": "Fictional practice book for the art collection."
   },
   {
-    "id": "books-03",
+    "id": "5",
     "title": "Quiet Satellites",
     "author": "Ira Chen",
     "category": "Science fiction",
@@ -36,7 +36,7 @@
     "description": "Fictional practice book for the science fiction collection."
   },
   {
-    "id": "books-04",
+    "id": "6",
     "title": "Small City Stories",
     "author": "Nora Vale",
     "category": "Fiction",
@@ -44,7 +44,7 @@
     "description": "Fictional practice book for the fiction collection."
   },
   {
-    "id": "books-05",
+    "id": "7",
     "title": "Trail Notes",
     "author": "Ari Stone",
     "category": "Nature",
@@ -52,7 +52,7 @@
     "description": "Fictional practice book for the nature collection."
   },
   {
-    "id": "books-06",
+    "id": "8",
     "title": "Paper Worlds",
     "author": "Sam Finch",
     "category": "Art",
@@ -60,7 +60,7 @@
     "description": "Fictional practice book for the art collection."
   },
   {
-    "id": "books-07",
+    "id": "9",
     "title": "Night Orchard",
     "author": "Jules Brook",
     "category": "Fiction",
@@ -68,7 +68,7 @@
     "description": "Fictional practice book for the fiction collection."
   },
   {
-    "id": "books-08",
+    "id": "10",
     "title": "Cloud Atlas Practice",
     "author": "Ren Lake",
     "category": "Nature",
