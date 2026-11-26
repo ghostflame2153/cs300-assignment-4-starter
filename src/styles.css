@@ -2,13 +2,14 @@
 
 body {
     min-height: 100vh; 
-    background-color: lightcoral;
+    background-color: #FCF5E5;
+    /*https://htmlcolorcodes.com/colors/parchment/ used color parchment*/
     display: flex;
     justify-content: center;
     color:black; 
-    border-left: 50px solid lightcoral;
-    border-right: 50px solid lightcoral;
-    
+    border-left: 50px solid brown;
+    border-right: 50px solid brown;
+
   
 
 
