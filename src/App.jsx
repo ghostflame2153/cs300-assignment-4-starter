@@ -1,29 +1,16 @@
 import { useState } from 'react';
 import "./styles.css";
 import initialBooks from '../data/books.json';
-  function Books() {
 
-  const [books, setBooks] = useState(initialBooks);
-  //[
-  //  {id:1, title: "TitleTest",author: "AuthorTest", genre:"SciFi", info:"Other"},
-  //  {id:2, title: "TitleTest2", author: "AuthorTest2", genre:"Fantasy", info:"Other"}
-
-  //]);
+function SearchBar ({submittedSearch, onSearch}) {
   const [search, setSearch] = useState('');
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [genre, setGenre] = useState('');
-  const [info, setInfo] = useState('');
-  const [submittedSearch, setSubmittedSearch] = useState('');
-  const [searchType, setSearchType] = useState('all');
-  const [error, setError] = useState('');
-  function handleSearchSubmit(e) {
-  e.preventDefault();
-  if (!search.trim()){
-  setSubmittedSearch('');
-  return;
-}
-const choice = window.prompt(
+  function handleSearchSubmit(e){
+    e.preventDefault();
+    if(!search.trim()) {
+      onSearch('','all');
+      return
+    }
+   const choice = window.prompt(
   "Choose the type you would like to search: Title, Author, Genre, or Rating!"
 );
 
@@ -37,43 +24,190 @@ if (!validType.includes(formattedWindow)) {
   return;
 }
 
+ onSearch(search, formattedWindow);
+  }
+
+function handleClearSearch() {
+  setSearch('');
+  onSearch('', 'all');
+}
+   return (
+      <div className="searchBox">
+
+    <form onSubmit={handleSearchSubmit}>
+      <input 
+      type="text"
+     placeholder="Search by title, genre, or rating!"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+      {submittedSearch && (
+        <button type="button" onClick={handleClearSearch}>
+          Clear
+          </button>
+      )}
+      </form>
+      </div>
+   );
+
+}
+
+function AddBook({ onAddBook }){
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [genre, setGenre] = useState('');
+  const [info, setInfo] = useState('');
+  const [error, setError] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if(!title.trim()){
+      setError("Title Missing");
+      return;
+    }
+    if(!author.trim()){
+      setError("Author Missing");
+      return;
+    }
+    setError('');
+
+    onAddBook({
+      title: title.trim(),
+      author: author.trim(),
+      genre: genre.trim(),
+      info: info.trim(),
+
+    });
+
+    setTitle('');
+    setAuthor('');
+    setGenre('');
+    setInfo('');
+
+  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+      type="text"
+      placeholder="Title"
+      value={title}
+      onChange={(e) => {
+        setTitle(e.target.value);
+        if (error) setError('');
+      }}
+      />
+      <input 
+      type="text"
+      placeholder="Author"
+      value={author}
+      onChange={(e) =>{
+        setAuthor(e.target.value);
+        if (error) setError('');
+      }}
+      />
+
+      <input
+      type="text"
+      placeholder="Genre(optional)"
+      value={genre}
+      onChange={(e) => {
+        setGenre(e.target.value);
+        if (error) setError('');
+      }}
+      />
+
+      <input 
+      type="text"
+      placeholder="Additional Info (optional)"
+      value={info}
+      onChange={(e) => {
+        setInfo(e.target.value);
+        if (error) setError('');
+      }}
+      />
+      <button type="submit">Add New Book</button>
+      {error && <p style={{ color : 'red'}}>Error adding a new book!</p>}
+      </form>
+
+
+  );
+}
+  function Books() {
+
+  const [books, setBooks] = useState(initialBooks);
+  //[
+  //  {id:1, title: "TitleTest",author: "AuthorTest", genre:"SciFi", info:"Other"},
+  //  {id:2, title: "TitleTest2", author: "AuthorTest2", genre:"Fantasy", info:"Other"}
+/*
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [genre, setGenre] = useState('');
+  const [info, setInfo] = useState('');
+   const [error, setError] = useState('');
+  //]);*/
+  const [submittedSearch, setSubmittedSearch] = useState('');
+  const [searchType, setSearchType] = useState('all');
+  
+
+  function handleApplySearch (query, type) {
+    setSubmittedSearch(query);
+    setSearchType(type);
+  }
+/*
+      Made search into its own component: Left here for reference
+
+
+  function handleSearchSubmit(e) {
+  e.preventDefault();
+ if (!search.trim()){
+ setSubmittedSearch('');
+ return;
+}
+const choice = window.prompt(
+  "Choose the type you would like to search: Title, Author, Genre, or Rating!"
+);
+
+if (choice === null) return;
+
+const formattedWindow = choice.toLowerCase().trim();
+const validType = ['title', 'author', 'genre', 'rating'];
+
+if (!validType.includes(formattedWindow)) {
+ alert("Sorry, please try again (invalid)");
+ return;
+}
+
 setSearchType(formattedWindow);
 setSubmittedSearch(search);
-  }
+ }
 
 function handleClearSearch() {
   setSearch('');
   setSubmittedSearch('');
 }
-function bookAdd(e) {
-    e.preventDefault();
-    if(!title.trim()){ 
-     setError("Title missing");
-      return;
-    }
-    if (!author.trim()){
-      setError("Author missing");
-      return;
-    };
-    setError('');
+
+*/
+
+function bookAdd(newBookInput) {
 
     const bookIdCreater = books.length > 0 ? Math.max(...books.map(b => b.id)) + 1 : 1;
     
     const newBook = {
       id: bookIdCreater,
-      title: title.trim(),
-      author: author.trim(),
+      title: newBookInput.title,
+      author: newBookInput.author,
       rating: null,
       showRating: false,
-      info: info.trim(),
-      genre: genre.trim(),
+      info: newBookInput.info,
+      genre: newBookInput.genre,
     };
 
     setBooks([...books, newBook])
-    setTitle('');
+    /*setTitle('');
     setAuthor('');
     setInfo('');
-    setGenre('');
+    setGenre('');*/
 }
 function bookManage(idToRemove){
   if (idToRemove <= 2) return;
@@ -178,12 +312,14 @@ const searchBooks = visibleBooks.filter ((book) => {
 
 
   return (
-    <>
-    <div className="searchBox">
-      <form onSubmit={handleSearchSubmit}>
+      <>
+      {/*
+          More from when search was part of Book
+
+    <form onSubmit={handleSearchSubmit}>
       <input 
       type="text"
-      placeholder="Search by title, genre, or rating!"
+     placeholder="Search by title, genre, or rating!"
       value={search}
       onChange={(e) => setSearch(e.target.value)}
       />
@@ -195,9 +331,16 @@ const searchBooks = visibleBooks.filter ((book) => {
       )}
       </form>
       </div>
+  */}
+  
+    <SearchBar submittedSearch={submittedSearch}
+    onSearch={handleApplySearch}
 
+  />
       <h1>My Books: </h1>
+<AddBook onAddBook={bookAdd} />
 
+      {/*
       <form onSubmit={bookAdd}>
       <input 
         type="text"
@@ -231,7 +374,7 @@ const searchBooks = visibleBooks.filter ((book) => {
         <button type="submit"> Add New Book</button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
-      
+      */}
       <ul>
 
         {searchBooks.map((book) => ( <li key={book.id}> #{bookId(book)}- "{book.title}" by {book.author}{''}
