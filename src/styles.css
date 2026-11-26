@@ -5,8 +5,8 @@ html{
 }
 @media (min-width:768px){
     html{
-        border-left: 20vw solid rgba(204, 131, 36, 0.945);
-        border-right: 20vw solid rgba(204, 131, 36, 0.945);
+        border-left: 20vw solid rgba(204, 75, 36, 0.945);
+        border-right: 20vw solid rgba(204, 75, 36, 0.945);
     }
 }
 body {
