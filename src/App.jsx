@@ -204,7 +204,7 @@ const searchBooks = visibleBooks.filter ((book) => {
         placeholder="Title"
         value={title}
         onChange={(e) =>{ setTitle(e.target.value);
-        if (formError) setFormError('');}}
+        if (error) setError('');}}
         />
 
         <input 
@@ -212,7 +212,7 @@ const searchBooks = visibleBooks.filter ((book) => {
         placeholder="Author"
         value={author}
         onChange={(e) => {setAuthor(e.target.value);
-        if (formError) setFormError('');
+        if (error) setError('');
         }}
         />
          <input
@@ -229,6 +229,7 @@ const searchBooks = visibleBooks.filter ((book) => {
           onChange={(e) => setInfo(e.target.value)}
         />
         <button type="submit"> Add New Book</button>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         </form>
       
       <ul>
